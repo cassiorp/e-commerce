@@ -21,6 +21,7 @@ public class UserMapper {
 
     public static UserEntity toEntity(UserUpdateDTO userUpdateDTO, UserEntity userEntity) {
         return UserEntity.builder()
+                .id(userEntity.getId())
                 .name(ofNullable(userUpdateDTO.getName()).orElse(userEntity.getName()))
                 .email(ofNullable(userUpdateDTO.getEmail()).orElse(userEntity.getEmail()))
                 .password(ofNullable(userUpdateDTO.getPassword()).orElse(userEntity.getPassword()))

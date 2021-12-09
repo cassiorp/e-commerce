@@ -5,12 +5,10 @@ import com.ifsul.marketplace.dto.request.UserUpdateDTO;
 import com.ifsul.marketplace.dto.response.UserResponseDTO;
 import com.ifsul.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
@@ -46,7 +44,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(String id) {
+    public ResponseEntity deleteUser(@PathVariable String id) {
         userService.deleteUserById(id);
         return new ResponseEntity<>(NO_CONTENT);
     }
