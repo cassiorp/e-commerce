@@ -1,9 +1,27 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Input from '../components/input/input';
-import { BodyLoginPage, Container } from './styles';
+import { BodyLoginPage, ButtonContainer, Container } from './styles';
+import TextField from '@mui/material/TextField';
+import { useForm } from 'react-hook-form';
+import ErrorMessage from '../components/error-meassage/errorMessage';
+import DialogPopUp from '../components/dialog-pop-up/dialogPopUp';
+import { useState } from 'react';
 
 const Home = () => {
+  const [openPopUp, setOpenPopUp] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSave = (data) => {
+    console.log(data, 'aaaaaaaaaaaaaaaa');
+  };
+
+  const closePopUp = () => {
+    setOpenPopUp(false);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -13,8 +31,61 @@ const Home = () => {
       </Head>
       <BodyLoginPage>
         <Container>
-          <Input placeHolder={'Usuario'} />
-          <Input placeHolder={'Senha'} type={'password'} />
+          <img src={'/logo.png'} />
+          <div className={'container-input'}>
+            <form onSubmit={handleSubmit(onSave)}>
+              <TextField
+                className={'inputs'}
+                fullWidth
+                name={'name'}
+                error={errors.user}
+                id="filled-basic"
+                label="Usuário"
+                variant="filled"
+                {...register('name', { required: true })}
+              />
+              {errors.user && (
+                <ErrorMessage text={'O campo Usuário é obrigatório'} />
+              )}
+              <TextField
+                className={'inputs'}
+                fullWidth
+                id="filled-password-input"
+                label="Senha"
+                type="password"
+                autoComplete="current-password"
+                variant="filled"
+                {...register('password', { required: true })}
+              />
+              {errors.password && (
+                <ErrorMessage text={'O campo Senha é obrigatório'} />
+              )}
+              <ButtonContainer
+                backgoundcolor={'#354545'}
+                className={'inputs buttons-input'}
+                fullWidth
+                variant="contained"
+                type={'submit'}
+              >
+                ENTRAR
+              </ButtonContainer>
+            </form>
+            <ButtonContainer
+              backgoundcolor={'#354545'}
+              className={'inputs buttons-input'}
+              fullWidth
+              variant="contained"
+              type={'button'}
+              onClick={() => setOpenPopUp(true)}
+            >
+              CADASTRAR
+            </ButtonContainer>
+            <DialogPopUp
+              title={`Cadastro`}
+              openPopup={openPopUp}
+              onClose={closePopUp}
+            />
+          </div>
         </Container>
       </BodyLoginPage>
     </div>

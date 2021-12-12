@@ -1,4 +1,4 @@
-package com.ifsul.marketplace.exception;
+package com.ifsul.marketplace.mapper.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

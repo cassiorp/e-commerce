@@ -1,4 +1,4 @@
-package com.ifsul.marketplace.exception;
+package com.ifsul.marketplace.mapper.exception;
 
 import com.ifsul.marketplace.entity.UserEntity;
 import org.springframework.http.HttpStatus;

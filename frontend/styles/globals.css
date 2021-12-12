@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.inputs {
+  margin-top: 50px;
+}
+.buttons-input {
+  height: 50px;
+}
