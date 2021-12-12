@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 public class UserSaveException extends RuntimeException{
-    public UserSaveException(UserEntity userEntity) {
-        super("Erro ao salvar usuario: "+ userEntity);
+    public UserSaveException(String message) {
+        super(message);
     }
 }

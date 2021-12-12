@@ -1,11 +1,9 @@
 package com.ifsul.marketplace.mapper;
 
-import com.ifsul.marketplace.dto.request.UserCreateDTO;
-import com.ifsul.marketplace.dto.request.UserUpdateDTO;
-import com.ifsul.marketplace.dto.response.UserResponseDTO;
+import com.ifsul.marketplace.dto.user.request.UserCreateDTO;
+import com.ifsul.marketplace.dto.user.request.UserUpdateDTO;
+import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
 import com.ifsul.marketplace.entity.UserEntity;
-
-import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 

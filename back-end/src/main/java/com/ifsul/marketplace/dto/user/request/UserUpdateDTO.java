@@ -1,13 +1,14 @@
-package com.ifsul.marketplace.dto.response;
+package com.ifsul.marketplace.dto.user.request;
 
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
-public class UserResponseDTO {
-    private String id;
+@Builder
+public class UserUpdateDTO {
+
     private String name;
     private String email;
     private String password;
+
 }

@@ -1,8 +1,8 @@
 package com.ifsul.marketplace.service;
 
-import com.ifsul.marketplace.dto.request.UserCreateDTO;
-import com.ifsul.marketplace.dto.request.UserUpdateDTO;
-import com.ifsul.marketplace.dto.response.UserResponseDTO;
+import com.ifsul.marketplace.dto.user.request.UserCreateDTO;
+import com.ifsul.marketplace.dto.user.request.UserUpdateDTO;
+import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
 import com.ifsul.marketplace.entity.UserEntity;
 import com.ifsul.marketplace.exception.UserAlreadyExistsException;
 import com.ifsul.marketplace.exception.UserDeleteException;
@@ -12,6 +12,7 @@ import com.ifsul.marketplace.mapper.UserMapper;
 import com.ifsul.marketplace.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class UserService {
     public UserResponseDTO createUser(UserCreateDTO userCreateDTO) {
         checkIfExistsEmail(userCreateDTO.getEmail());
         UserEntity userEntity = UserMapper.toEntity(userCreateDTO);
+        userEntity.setPassword(new BCryptPasswordEncoder().encode(userEntity.getPassword()));
         userEntity = this.save(userEntity);
         return UserMapper.toResponse(userEntity);
     }
@@ -60,7 +62,7 @@ public class UserService {
             return userRepository.save(userEntity);
         } catch (RuntimeException e) {
             log.error("ERRO " + e.getMessage());
-            throw new UserSaveException(userEntity);
+            throw new UserSaveException("Erro ao salvar usuario " + userEntity);
         }
     }
 

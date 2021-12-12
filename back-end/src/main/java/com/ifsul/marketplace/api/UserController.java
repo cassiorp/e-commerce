@@ -1,8 +1,8 @@
 package com.ifsul.marketplace.api;
 
-import com.ifsul.marketplace.dto.request.UserCreateDTO;
-import com.ifsul.marketplace.dto.request.UserUpdateDTO;
-import com.ifsul.marketplace.dto.response.UserResponseDTO;
+import com.ifsul.marketplace.dto.user.request.UserCreateDTO;
+import com.ifsul.marketplace.dto.user.request.UserUpdateDTO;
+import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
 import com.ifsul.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

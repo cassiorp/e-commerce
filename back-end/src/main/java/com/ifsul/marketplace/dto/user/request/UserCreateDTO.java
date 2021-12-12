@@ -1,4 +1,4 @@
-package com.ifsul.marketplace.dto.request;
+package com.ifsul.marketplace.dto.user.request;
 
 import lombok.Builder;
 import lombok.Data;
