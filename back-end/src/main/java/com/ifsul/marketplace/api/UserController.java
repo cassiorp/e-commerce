@@ -3,10 +3,13 @@ package com.ifsul.marketplace.api;
 import com.ifsul.marketplace.dto.user.request.UserCreateDTO;
 import com.ifsul.marketplace.dto.user.request.UserUpdateDTO;
 import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
+import com.ifsul.marketplace.exception.UserAlreadyExistsException;
 import com.ifsul.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,9 +24,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
-        UserResponseDTO saved = userService.createUser(userCreateDTO);
-        return new ResponseEntity<>(saved, CREATED);
+    public ResponseEntity createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
+        try { UserResponseDTO saved = userService.createUser(userCreateDTO);
+            return new ResponseEntity<>(saved, CREATED);
+        } catch (ResponseStatusException e) {
+            e.printStackTrace(); // see note 2
+            return ResponseEntity
+                    .status(e.getStatus())
+                    .body(e.getReason());
+        }
     }
 
     @GetMapping

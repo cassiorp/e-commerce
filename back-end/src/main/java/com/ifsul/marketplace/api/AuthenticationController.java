@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/login")
+@RequestMapping("v1/login")
 public class AuthenticationController {
 
     @Autowired

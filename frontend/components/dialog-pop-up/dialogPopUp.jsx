@@ -11,13 +11,14 @@ import {
   ContainerCloseIcon,
 } from './styles';
 import { useDispatch } from 'react-redux';
-import { createUserAction } from '../../sagas/actions/createUser';
+import { createUserAction } from '../../sagas/actions/user';
 
 const DialogPopUp = ({ title, openPopup, onClose }) => {
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -30,6 +31,13 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
     dispatch(createUserAction(user));
   };
 
+  const resetValuesAndClose = () => {
+    setValue('name', '');
+    setValue('email', '');
+    setValue('password', '');
+    onClose();
+  };
+
   return (
     <Dialog open={openPopup} maxWidth="md">
       <DialogTitle>
@@ -37,7 +45,7 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
           <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
             {title}
           </Typography>
-          <ContainerCloseIcon onClick={() => onClose()} />
+          <ContainerCloseIcon onClick={() => resetValuesAndClose()} />
         </div>
       </DialogTitle>
       <ContainerDialog dividers>
@@ -75,6 +83,7 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
               fullWidth
               id="filled-password-input"
               label="Senha"
+              name={'password'}
               type="password"
               autoComplete="current-password"
               variant="filled"

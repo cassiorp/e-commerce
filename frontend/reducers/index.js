@@ -1,4 +1,5 @@
 import * as types from '../sagas/actions/types';
+import {LOGIN_SUCCESS} from "../sagas/actions/types";
 
 const initialState = {
   name: '',
@@ -7,7 +8,6 @@ const initialState = {
 
 export const user = (state = initialState, action = null) => {
   if (action.type === types.CREATE_USER) {
-    console.log(action.payload, 'uuuuuuuuuu');
     return {
       ...state,
       name: action.user.name,
@@ -17,6 +17,12 @@ export const user = (state = initialState, action = null) => {
     const response = action?.errorData;
     return {
       error: response,
+    };
+  } else if (action.type === types.LOGIN_SUCCESS) {
+    return {
+      ...state,
+      name: action.user.name,
+      email: action.user.email,
     };
   }
 };

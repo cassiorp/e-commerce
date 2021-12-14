@@ -1,2 +1,3 @@
 export const CREATE_USER = 'CREATE_USER';
 export const CREATE_USER_FAIL = 'CREATE_USER_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

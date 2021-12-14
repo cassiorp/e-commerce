@@ -6,9 +6,13 @@ import { useForm } from 'react-hook-form';
 import ErrorMessage from '../components/error-meassage/errorMessage';
 import DialogPopUp from '../components/dialog-pop-up/dialogPopUp';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../sagas/actions/user';
+import Image from 'next/image';
 
 const Home = () => {
-  const [openPopUp, setOpenPopUp] = useState(true);
+  const [openPopUp, setOpenPopUp] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -16,7 +20,7 @@ const Home = () => {
   } = useForm();
 
   const onSave = (data) => {
-    console.log(data, 'aaaaaaaaaaaaaaaa');
+    dispatch(loginAction(data));
   };
 
   const closePopUp = () => {
@@ -31,18 +35,23 @@ const Home = () => {
       </Head>
       <BodyLoginPage>
         <Container>
-          <img src={'/logo.png'} />
+          <Image
+            src={'/logo.png'}
+            alt={'logo'}
+            width={'280px'}
+            height={'72px'}
+          />
           <div className={'container-input'}>
             <form onSubmit={handleSubmit(onSave)}>
               <TextField
                 className={'inputs'}
                 fullWidth
-                name={'name'}
+                name={'email'}
                 error={errors.user}
                 id="filled-basic"
                 label="Usuário"
                 variant="filled"
-                {...register('name', { required: true })}
+                {...register('email', { required: true })}
               />
               {errors.user && (
                 <ErrorMessage text={'O campo Usuário é obrigatório'} />

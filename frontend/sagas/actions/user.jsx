@@ -6,3 +6,10 @@ export const createUserAction = (user) => {
     user,
   };
 };
+
+export const loginAction = (user) => {
+  return {
+    type: types.LOGIN_SUCCESS,
+    user,
+  };
+};
