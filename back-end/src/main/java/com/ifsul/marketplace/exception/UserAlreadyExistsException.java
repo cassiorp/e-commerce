@@ -1,10 +1,14 @@
 package com.ifsul.marketplace.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class UserAlreadyExistsException extends ResponseStatusException {
-    public UserAlreadyExistsException(String reason) {
-        super(HttpStatus.BAD_REQUEST, reason);
+public class UserAlreadyExistsException extends RuntimeException {
+    public UserAlreadyExistsException(String message) {
+        super(message);
+    }
+
+    public HttpStatus getStatus() {
+        return HttpStatus.BAD_REQUEST;
     }
 }

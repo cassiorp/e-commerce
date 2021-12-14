@@ -25,14 +25,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity createUser(@Valid @RequestBody UserCreateDTO userCreateDTO) {
-        try { UserResponseDTO saved = userService.createUser(userCreateDTO);
-            return new ResponseEntity<>(saved, CREATED);
-        } catch (ResponseStatusException e) {
-            e.printStackTrace(); // see note 2
-            return ResponseEntity
-                    .status(e.getStatus())
-                    .body(e.getReason());
-        }
+        UserResponseDTO saved = userService.createUser(userCreateDTO);
+        return new ResponseEntity<>(saved, CREATED);
     }
 
     @GetMapping

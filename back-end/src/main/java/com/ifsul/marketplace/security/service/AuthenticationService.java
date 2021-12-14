@@ -2,6 +2,7 @@ package com.ifsul.marketplace.security.service;
 
 import com.ifsul.marketplace.dto.auth.LoginDTO;
 import com.ifsul.marketplace.dto.auth.TokenDTO;
+import com.ifsul.marketplace.exception.BadCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,7 +33,7 @@ public class AuthenticationService {
         try {
             return authenticationManager.authenticate(usernameAndPassword);
         } catch (AuthenticationException e){
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,e.getMessage());
+            throw new BadCredentialsException(e.getMessage());
         }
     }
 }
