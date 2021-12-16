@@ -2,13 +2,13 @@ import React from 'react';
 import { Dialog, DialogTitle } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import ErrorMessage from '../error-meassage/errorMessage';
-import { ButtonContainer } from '../../pages/styles';
 import { useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import {
   ContainerRegister,
   ContainerDialog,
   ContainerCloseIcon,
+  ButtonContainer
 } from './styles';
 import { useDispatch } from 'react-redux';
 import { createUserAction } from '../../sagas/actions/user';

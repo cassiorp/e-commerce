@@ -1,16 +1,16 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 import { BodyLoginPage, ButtonContainer, Container } from './styles';
 import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
-import ErrorMessage from '../components/error-meassage/errorMessage';
-import DialogPopUp from '../components/dialog-pop-up/dialogPopUp';
+import ErrorMessage from '../../components/error-meassage/errorMessage';
+import DialogPopUp from '../../components/dialog-pop-up/dialogPopUp';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginAction } from '../sagas/actions/user';
+import { loginAction } from '../../sagas/actions/user';
 import Image from 'next/image';
 
-const Home = () => {
+const Login = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -101,4 +101,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;
