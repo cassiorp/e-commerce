@@ -29,6 +29,8 @@ export const user = (state = initialState, action = null) => {
       error: { message: 'Usuario ou senha incorreto' },
       logged: false,
     };
+  } else if (action.type === types.LOGOUT) {
+    return initialState;
   } else {
     return state;
   }

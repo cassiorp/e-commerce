@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import redirect from 'nextjs-redirect';
+import LoggedHeader from '../components/loggedHeader';
+import SideMenu from "../components/sideMenu";
 
 const MyHome = () => {
   const login = useSelector((state) => state?.logged);
@@ -13,10 +15,13 @@ const MyHome = () => {
     <>
       {!login ? (
         <Redirect>
-          <div>Redirecting to github!</div>
+          <div>Logout...</div>
         </Redirect>
       ) : (
-        <h1>bem vindo a home</h1>
+        <>
+          <LoggedHeader />
+          <SideMenu />
+        </>
       )}
     </>
   );
