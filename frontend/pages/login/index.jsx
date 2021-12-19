@@ -1,18 +1,18 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 import { BodyLoginPage, ButtonContainer, Container } from './styles';
 import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
-import ErrorMessage from '../components/error-meassage/errorMessage';
-import DialogPopUp from '../components/dialog-pop-up/dialogPopUp';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAction } from '../sagas/actions/user';
+import { loginAction } from '../../sagas/actions/user';
+import ErrorMessage from '../../components/error-meassage/errorMessage';
+import DialogPopUp from '../../components/dialog-pop-up/dialogPopUp';
 import Image from 'next/image';
 import { Alert, Snackbar } from '@mui/material';
 import Router from 'next/router';
 
-const Home = () => {
+const Login = () => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const [openError, setOpenError] = useState(false);
   const dispatch = useDispatch();
@@ -137,4 +137,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;

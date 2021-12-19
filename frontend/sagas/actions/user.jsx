@@ -1,5 +1,4 @@
 import * as types from './types';
-import { LOGOUT } from './types';
 
 export const createUserAction = (user) => {
   return {

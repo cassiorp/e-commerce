@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import DialogContent from '@material-ui/core/DialogContent/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
+import { Button } from '@mui/material';
 
 export const ContainerRegister = styled.div`
   display: inline-block;
@@ -20,4 +21,8 @@ export const ContainerDialog = styled(DialogContent)`
 
 export const ContainerCloseIcon = styled(CloseIcon)`
   cursor: pointer;
+`;
+
+export const ButtonContainer = styled(Button)`
+  background-color: ${(props) => props?.backgoundcolor};
 `;

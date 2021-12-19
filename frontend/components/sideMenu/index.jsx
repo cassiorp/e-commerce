@@ -5,7 +5,7 @@ const SideMenu = () => {
   return (
     <SideMenuBody>
       <div>Categorias</div>
-        <span></span>
+      <span></span>
     </SideMenuBody>
   );
 };
