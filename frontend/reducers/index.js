@@ -1,12 +1,14 @@
 import * as types from '../sagas/actions/types';
-import {LOGIN_SUCCESS} from "../sagas/actions/types";
 
 const initialState = {
   name: '',
   email: '',
+  error: undefined,
+  logged: false,
 };
 
 export const user = (state = initialState, action = null) => {
+  console.log(action.type);
   if (action.type === types.CREATE_USER) {
     return {
       ...state,
@@ -14,15 +16,20 @@ export const user = (state = initialState, action = null) => {
       email: action.user.email,
     };
   } else if (action.type === types.CREATE_USER_FAIL) {
-    const response = action?.errorData;
     return {
-      error: response,
+      error: { message: 'Usuario já cadastrado' },
     };
   } else if (action.type === types.LOGIN_SUCCESS) {
     return {
       ...state,
-      name: action.user.name,
-      email: action.user.email,
+      logged: true,
     };
+  } else if (action.type === types.LOGIN_ERROR) {
+    return {
+      error: { message: 'Usuario ou senha incorreto' },
+      logged: false,
+    };
+  } else {
+    return state;
   }
 };

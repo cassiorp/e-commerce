@@ -52,7 +52,9 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
         <ContainerRegister>
           <form onSubmit={handleSubmit(onSave)}>
             <TextField
-              className={'inputs'}
+              style={{
+                marginTop: '50px',
+              }}
               fullWidth
               name={'name'}
               error={errors.user}
@@ -65,7 +67,9 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
               <ErrorMessage text={'O campo Usuário é obrigatório'} />
             )}
             <TextField
-              className={'inputs'}
+              style={{
+                marginTop: '50px',
+              }}
               type={'email'}
               fullWidth
               name={'email'}
@@ -79,7 +83,9 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
               <ErrorMessage text={'O campo Usuário é obrigatório'} />
             )}
             <TextField
-              className={'inputs'}
+              style={{
+                marginTop: '50px',
+              }}
               fullWidth
               id="filled-password-input"
               label="Senha"
@@ -93,8 +99,12 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
               <ErrorMessage text={'O campo Senha é obrigatório'} />
             )}
             <ButtonContainer
+              style={{
+                backgroundColor: '#354545',
+                marginTop: '50px',
+                height: '50px',
+              }}
               backgoundcolor={'#354545'}
-              className={'inputs buttons-input'}
               fullWidth
               variant="contained"
               type={'submit'}

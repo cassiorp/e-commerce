@@ -28,6 +28,7 @@ export function loginService(request) {
       const result = axios.post(LOGIN_API_ENDPOINT, body);
       resolve(result);
     } catch (error) {
+
       reject(error);
     }
   });
