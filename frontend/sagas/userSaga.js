@@ -4,8 +4,9 @@ import { loginService, sendService } from '../services/services';
 
 export function* sendForm(payload) {
   try {
+    console.log("criando user");
     yield call(sendService, payload);
-    yield put({ type: types.CREATE_USER, payload });
+    yield put({ type: types.CREATE_USER_SUCCESS, payload });
   } catch (error) {
     const errorData = error?.response?.data;
     yield put({ type: types.CREATE_USER_FAIL, errorData });

@@ -23,6 +23,7 @@ const DialogPopUp = ({ title, openPopup, onClose }) => {
   } = useForm();
 
   const onSave = (data) => {
+    console.log(data);
     const user = {
       name: data.name,
       email: data.email,

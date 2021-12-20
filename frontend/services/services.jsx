@@ -8,10 +8,13 @@ export function sendService(request) {
     password: request.user.password,
   };
   return new Promise((resolve, reject) => {
+    console.log("que azar")
     try {
       const result = axios.post(LOGIN_API_ENDPOINT, body);
+      
       resolve(result);
     } catch (error) {
+      console.log(error);
       reject(error);
     }
   });
