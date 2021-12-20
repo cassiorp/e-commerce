@@ -1,13 +1,7 @@
 import Template from '../../components/template';
 import Fab from '../../components/fab';
-
-import { Container } from './styles';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+import Card from '../../components/card/index';
+import { Container, Div } from './styles';
 import Typography from '@mui/material/Typography';
 import redirect from 'nextjs-redirect';
 import React from 'react';
@@ -25,10 +19,33 @@ const Home = () => {
         </Redirect>
       ) : (
         <Template>
+          <Typography
+              variant="h3"
+              gutterBottom
+              component="div"
+              color={'#354545'}
+              style={{margin: "10px"}}
+            >
+              Meus Produtos
+            </Typography>
           <Container>
-            home
-            <Fab onClick={() => alert('fab clicado')} />
+            
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
           </Container>
+          <Fab onClick={() => alert('fab clicado')} />
         </Template>
       )}
     </>

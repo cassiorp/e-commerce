@@ -3,7 +3,7 @@ import AppBar from '../app-bar';
 
 const Template = ({ children }) => {
   return (
-    <div style={{height:"100vh", display: "flex", flexDirection: "column"}}>
+    <div >
       <AppBar />
       {children}
     </div>

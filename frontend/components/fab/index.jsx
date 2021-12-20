@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 const FabButton = (props) => {
   const fabStyle = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 16,
     right: 16,
   };
