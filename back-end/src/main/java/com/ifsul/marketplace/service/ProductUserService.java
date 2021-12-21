@@ -8,6 +8,7 @@ import com.ifsul.marketplace.mapper.UserMapper;
 import com.ifsul.marketplace.repository.ItemRepository;
 import com.ifsul.marketplace.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -23,13 +24,13 @@ public class ProductUserService {
     private ItemRepository itemRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     public ItemEntity addNewProduct(ItemDTO itemDTO) {
-        var user = userRepository.findByEmail(itemDTO.getUserEmail());
+        var user = userService.findById(itemDTO.getIdUser());
         ItemEntity itemEntity = new ItemEntity();
         itemEntity.setDescription(itemDTO.getDescription());
-        itemEntity.setUserId(user.get().getId());
+        itemEntity.setUserId(user.getId());
         itemEntity.setName(itemDTO.getName());
         itemEntity.setPrice(itemDTO.getPrice());
         this.save(itemEntity);
@@ -45,9 +46,9 @@ public class ProductUserService {
         }
     }
 
-    public List<ItemEntity> getAllProductsByUserEmail(String email) {
-        var user = userRepository.findByEmail(email);
-        return itemRepository.findByUserId(user.get().getId());
+    public List<ItemEntity> getAllProductsByUserId(String id) {
+        var user = userService.findById(id);
+        return itemRepository.findByUserId(user.getId());
     }
 
     public List<ItemEntity> getAllProducts() {

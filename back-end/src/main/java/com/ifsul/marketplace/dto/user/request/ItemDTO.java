@@ -13,7 +13,7 @@ public class ItemDTO {
     private String name;
 
     @NotBlank
-    private String userEmail;
+    private String idUser;
 
     @NotBlank
     private String description;

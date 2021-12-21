@@ -23,11 +23,12 @@ export function* loginSaga(payload) {
   try {
     const response = yield call(loginService, payload);
     setOnLocalStorage('token', response?.data?.token);
-    yield call(getUserInfo, payload?.user?.email);
+    const userInfo = yield call(getUserInfo, payload?.user?.email);
     const products = yield call(
       getAllProductsFromUserService,
-      payload?.user?.email,
+      userInfo?.data?.id,
     );
+    console.log(products);
     yield put({ type: types.LOGIN_SUCCESS, payload });
     yield put({ type: types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS, products });
   } catch (error) {

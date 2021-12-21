@@ -25,6 +25,7 @@ const Login = () => {
   } = useForm();
 
   const onSave = (data) => {
+    console.log(data);
     dispatch(loginAction(data));
   };
 

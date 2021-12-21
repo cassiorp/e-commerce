@@ -66,7 +66,7 @@ public class UserService {
         }
     }
 
-    private UserEntity findById(String id) {
+    public UserEntity findById(String id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Não encontrado: " + id));
     }
