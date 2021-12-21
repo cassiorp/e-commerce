@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const Home = () => {
   const Redirect = redirect('http://localhost:3000/login');
   const login = useSelector((state) => state?.logged);
+  const products = useSelector((state) => state?.products);
 
   return (
     <>
@@ -29,20 +30,11 @@ const Home = () => {
             Meus Produtos
           </Typography>
           <Container>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {products?.map((product) => (
+              <>
+                <Card product={product} />
+              </>
+            ))}
           </Container>
           <Fab onClick={() => alert('fab clicado')} />
         </Template>

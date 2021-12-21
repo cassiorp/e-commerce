@@ -1,7 +1,7 @@
 export const setOnLocalStorage = (key, value) => {
-  return localStorage.setItem(key, value);
+  localStorage.setItem(key, value);
 };
 
 export const getFromLocalStorage = (key) => {
-  return localStorage.getItem(key);
+  if (typeof window !== 'undefined') return localStorage?.getItem(key);
 };

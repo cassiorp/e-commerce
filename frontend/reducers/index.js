@@ -6,10 +6,10 @@ const initialState = {
   error: undefined,
   logged: false,
   success: false,
+  products: [],
 };
 
 export const user = (state = initialState, action = null) => {
-  console.log(action.type);
   if (action.type === types.CREATE_USER) {
     return {
       ...state,
@@ -24,12 +24,18 @@ export const user = (state = initialState, action = null) => {
   } else if (action.type === types.LOGIN_SUCCESS) {
     return {
       ...state,
+      email: action?.payload?.user?.email,
       logged: true,
     };
   } else if (action.type === types.LOGIN_ERROR) {
     return {
       error: { message: 'Usuario ou senha incorreto' },
       logged: false,
+    };
+  } else if (action.type === types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS) {
+    return {
+      ...state,
+      products: action.products.data,
     };
   } else if (action.type === types.LOGOUT) {
     return initialState;

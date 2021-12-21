@@ -52,4 +52,9 @@ public class UserController {
         return new ResponseEntity<>(NO_CONTENT);
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserResponseDTO> getUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(userService.findByEmail(email), OK);
+    }
+
 }

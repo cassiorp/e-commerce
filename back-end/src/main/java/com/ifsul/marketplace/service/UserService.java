@@ -79,6 +79,10 @@ public class UserService {
         }
     }
 
+    public UserResponseDTO findByEmail(String email) {
+        return UserMapper.toResponse(userRepository.findByEmail(email).get());
+    }
+
     private void checkIfExistsEmail(String email) {
         var user = userRepository.findByEmail(email);
         if (user.isPresent())
