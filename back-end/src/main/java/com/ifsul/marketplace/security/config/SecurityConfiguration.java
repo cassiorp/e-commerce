@@ -2,8 +2,8 @@ package com.ifsul.marketplace.security.config;
 
 import com.ifsul.marketplace.repository.UserRepository;
 import com.ifsul.marketplace.security.filter.TokenAuthenticationFilter;
-import com.ifsul.marketplace.security.service.DetailsService;
-import com.ifsul.marketplace.security.service.TokenService;
+import com.ifsul.marketplace.service.DetailsService;
+import com.ifsul.marketplace.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

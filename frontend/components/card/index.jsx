@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const CardComponent = ({ product }) => {
+const CardComponent = ({ product, onClick }) => {
   return (
     <Card sx={{ maxWidth: 300 }} style={{ height: '65%' }}>
       <CardMedia
@@ -21,7 +21,7 @@ const CardComponent = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Editar</Button>
+        <Button onClick={onClick} size="small">Editar</Button>
       </CardActions>
     </Card>
   );

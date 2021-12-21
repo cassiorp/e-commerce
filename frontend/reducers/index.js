@@ -3,6 +3,7 @@ import * as types from '../sagas/actions/types';
 const initialState = {
   name: '',
   email: '',
+  id: '',
   error: undefined,
   logged: false,
   success: false,
@@ -23,9 +24,12 @@ export const user = (state = initialState, action = null) => {
       error: { message: 'Usuario já cadastrado' },
     };
   } else if (action.type === types.LOGIN_SUCCESS) {
+    console.log('REDUCER');
+    console.log(action.userInfo.data);
     return {
       ...state,
-      email: action?.payload?.user?.email,
+      email: action.userInfo.data.email,
+      id: action.userInfo.data.id,
       logged: true,
     };
   } else if (action.type === types.LOGIN_ERROR) {
@@ -38,8 +42,13 @@ export const user = (state = initialState, action = null) => {
       ...state,
       productsFromUser: action.products.data,
     };
+  } else if (action.type === types.CREATE_PRODUCTS_SUCCESS) {
+    return {
+      ...state,
+      products: [action.product.data, ...products],
+    };
   } else if (action.type === types.GET_ALL_PRODUCTS_SUCCESS) {
-    console.log(action.products.data, 'uuuuuuuuuuuuuuuuuuuuu')
+    console.log(action.products.data, 'uuuuuuuuuuuuuuuuuuuuu');
     return {
       ...state,
       products: action.products.data,

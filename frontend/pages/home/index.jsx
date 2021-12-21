@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Template from '../../components/template';
 import Fab from '../../components/fab';
 import Card from '../../components/card/index';
@@ -6,11 +7,23 @@ import Typography from '@mui/material/Typography';
 import redirect from 'nextjs-redirect';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import DialogPopUp from '../../components/form-product-pop-up';
 
 const Home = () => {
   const Redirect = redirect('http://localhost:3000/login');
   const login = useSelector((state) => state?.logged);
   const products = useSelector((state) => state?.productsFromUser);
+  const [openPopUp, setOpenPopUp] = useState(false);
+  const [openPopUpUpdate, setOpenPopUpUpdate] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [product, setProduct] = useState(null);
+
+  const closePopUp = () => {
+    setOpenPopUp(false);
+  };
+  const closePopUpUpdate = () => {
+    setOpenPopUpUpdate(false);
+  };
 
   return (
     <>
@@ -32,11 +45,32 @@ const Home = () => {
           <Container>
             {products?.map((product) => (
               <>
-                <Card product={product} />
+                <Card
+                  product={product}
+                  onClick={() => {
+                    setOpenPopUpUpdate(true);
+                    setProduct(product);
+                  }}
+                />
               </>
             ))}
           </Container>
-          <Fab onClick={() => alert('fab clicado')} />
+          <Fab onClick={() => setOpenPopUp(true)} />
+          <DialogPopUp
+            title={`Cadastro de produto`}
+            openPopup={openPopUp}
+            onClose={closePopUp}
+            type={'create'}
+          />
+          {openPopUpUpdate && (
+            <DialogPopUp
+              title={`Editar produto`}
+              openPopup={openPopUpUpdate}
+              onClose={closePopUpUpdate}
+              type={'update'}
+              product={product}
+            />
+          )}
         </Template>
       )}
     </>

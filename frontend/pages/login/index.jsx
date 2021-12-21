@@ -127,7 +127,7 @@ const Login = () => {
               CADASTRAR
             </ButtonContainer>
             <DialogPopUp
-              title={`Cadastro`}
+              title={`Cadastro de produto`}
               openPopup={openPopUp}
               onClose={closePopUp}
             />

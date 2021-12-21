@@ -26,3 +26,10 @@ export const getAllProductsAction = () => {
     type: types.GET_ALL_PRODUCTS,
   };
 };
+
+export const createProductAction = (product) => {
+  return {
+    type: types.CREATE_PRODUCT,
+    product
+  };
+};
