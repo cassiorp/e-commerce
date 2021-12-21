@@ -5,6 +5,7 @@ const initialState = {
   email: '',
   error: undefined,
   logged: false,
+  success: false,
 };
 
 export const user = (state = initialState, action = null) => {
@@ -14,6 +15,7 @@ export const user = (state = initialState, action = null) => {
       ...state,
       name: action.user.name,
       email: action.user.email,
+      success: true,
     };
   } else if (action.type === types.CREATE_USER_FAIL) {
     return {

@@ -9,7 +9,6 @@ export const Container = styled.div`
   margin: 10px;
 `;
 
-
 export const Title = styled.div`
   width: 250px;
   height: 250px;

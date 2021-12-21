@@ -3,7 +3,7 @@ import AppBar from '../app-bar';
 
 const Template = ({ children }) => {
   return (
-    <div >
+    <div>
       <AppBar />
       {children}
     </div>

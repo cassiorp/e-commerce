@@ -10,11 +10,7 @@ const Perfil = () => {
     width: '100%',
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSave = (data) => {
     console.log(data);
