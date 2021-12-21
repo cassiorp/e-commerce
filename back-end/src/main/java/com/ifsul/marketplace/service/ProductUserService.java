@@ -50,5 +50,9 @@ public class ProductUserService {
         return itemRepository.findByUserId(user.get().getId());
     }
 
+    public List<ItemEntity> getAllProducts() {
+        return itemRepository.findAll();
+    }
+
 
 }

@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -13,10 +13,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Search, SearchIconWrapper, StyledInputBase } from './styles';
 import { logOutAction } from '../../sagas/actions/user';
+import { useEffect } from 'react';
 
 export default function MenuBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,6 +25,12 @@ export default function MenuBar() {
   const dispatch = useDispatch();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const login = useSelector((state) => state?.logged);
+
+  useEffect(() => {
+    if (login) return;
+    Router.push('/login');
+  }, [login]);
 
   const router = useRouter();
 

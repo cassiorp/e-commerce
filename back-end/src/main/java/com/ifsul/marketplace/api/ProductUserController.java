@@ -34,4 +34,9 @@ public class ProductUserController {
         return productUserService.getAllProductsByUserEmail(email);
     }
 
+    @GetMapping
+    public List<ItemEntity> getAllProducts() {
+        return productUserService.getAllProducts();
+    }
+
 }

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 const Home = () => {
   const Redirect = redirect('http://localhost:3000/login');
   const login = useSelector((state) => state?.logged);
-  const products = useSelector((state) => state?.products);
+  const products = useSelector((state) => state?.productsFromUser);
 
   return (
     <>

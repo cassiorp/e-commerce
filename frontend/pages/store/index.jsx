@@ -1,5 +1,5 @@
 import { Container } from './styles';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Template from '../../components/template';
 import Card from '../../components/card/index';
 import PropTypes from 'prop-types';
@@ -7,9 +7,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProductsAction } from '../../sagas/actions/user';
 
 const Store = () => {
   const [value, setValue] = useState(0);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state?.products);
+  useEffect(() => {
+    dispatch(getAllProductsAction());
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -30,58 +37,14 @@ const Store = () => {
         </Box>
         <TabPanel value={value} index={0}>
           <Container>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-          </Container>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Container>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            {products?.map((product) => (
+              <>
+                <Card product={product} />
+              </>
+            ))}
           </Container>
         </TabPanel>
       </Box>
-
-      {/* <Container>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-      </Container> */}
     </Template>
   );
 };

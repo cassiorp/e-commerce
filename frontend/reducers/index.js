@@ -6,6 +6,7 @@ const initialState = {
   error: undefined,
   logged: false,
   success: false,
+  productsFromUser: [],
   products: [],
 };
 
@@ -33,6 +34,12 @@ export const user = (state = initialState, action = null) => {
       logged: false,
     };
   } else if (action.type === types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS) {
+    return {
+      ...state,
+      productsFromUser: action.products.data,
+    };
+  } else if (action.type === types.GET_ALL_PRODUCTS_SUCCESS) {
+    console.log(action.products.data, 'uuuuuuuuuuuuuuuuuuuuu')
     return {
       ...state,
       products: action.products.data,

@@ -1,4 +1,5 @@
 import * as types from './types';
+import { GET_ALL_PRODUCTS } from './types';
 
 export const createUserAction = (user) => {
   return {
@@ -17,5 +18,11 @@ export const loginAction = (user) => {
 export const logOutAction = () => {
   return {
     type: types.LOGOUT,
+  };
+};
+
+export const getAllProductsAction = () => {
+  return {
+    type: types.GET_ALL_PRODUCTS,
   };
 };

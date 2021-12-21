@@ -1,6 +1,7 @@
 import * as types from './actions/types';
 import { put, call } from 'redux-saga/effects';
 import {
+  getAllProducts,
   getAllProductsFromUserService,
   getUserInfo,
   loginService,
@@ -32,5 +33,15 @@ export function* loginSaga(payload) {
   } catch (error) {
     const errorData = error?.response?.data;
     yield put({ type: types.LOGIN_ERROR, errorData });
+  }
+}
+
+export function* getAllProductsSaga() {
+  try {
+    const products = yield call(getAllProducts);
+    console.log(products, 'pppppppppppppppppp');
+    yield put({ type: types.GET_ALL_PRODUCTS_SUCCESS, products });
+  } catch (error) {
+    console.log(error);
   }
 }

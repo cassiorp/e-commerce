@@ -63,3 +63,14 @@ export function getAllProductsFromUserService(request) {
   });
 }
 
+export function getAllProducts() {
+  const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user/`;
+  return new Promise((resolve, reject) => {
+    try {
+      const result = axios.get(LOGIN_API_ENDPOINT, headerAuthorization);
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
