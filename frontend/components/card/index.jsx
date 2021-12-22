@@ -7,11 +7,8 @@ import Typography from '@mui/material/Typography';
 
 const CardComponent = ({ product, onClick }) => {
   return (
-    <Card sx={{ maxWidth: 300 }} style={{ height: '65%' }}>
-      <CardMedia
-        component="img"
-        image="https://cdn.pixabay.com/photo/2017/10/10/21/47/laptop-2838921_960_720.jpg"
-      />
+    <Card sx={{ maxWidth: 300 }} style={{ height: 400 }}>
+      <CardMedia component="img" image={product?.urlImage} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product?.name}

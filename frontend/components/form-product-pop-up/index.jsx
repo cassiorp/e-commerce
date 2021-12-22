@@ -19,7 +19,8 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
   const success = useSelector((state) => state?.success);
   const idUser = useSelector((state) => state?.id);
   const dispatch = useDispatch();
-
+  const productWithOutImage =
+    'http://www.ccta.ufpb.br/labeet/contents/acervos/categorias/cordofones/udecra/sem-imagem.jpg';
   const {
     register,
     handleSubmit,
@@ -35,6 +36,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
       idUser: idUser,
       description: data.description,
       price: price,
+      urlImage: data.image || productWithOutImage,
     };
     dispatch(createProductAction(product));
   };
@@ -44,6 +46,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
       name: data.name,
       description: data.description,
       price: data.price,
+      urlImage: data.image || productWithOutImage,
     };
     console.log(product);
   };
@@ -52,6 +55,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
     setValue('name', '');
     setValue('description', '');
     setValue('price', '');
+    setValue('image', '');
     onClose();
   };
 
@@ -74,6 +78,18 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
         <ContainerDialog dividers>
           <ContainerRegister>
             <form onSubmit={handleSubmit(onSave)}>
+              <TextField
+                style={{
+                  marginTop: '50px',
+                }}
+                fullWidth
+                name={'image'}
+                error={errors.product}
+                id="filled-basic"
+                label="Url da imagem"
+                variant="filled"
+                {...register('image')}
+              />
               <TextField
                 style={{
                   marginTop: '50px',
@@ -146,6 +162,19 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
         <ContainerDialog dividers>
           <ContainerRegister>
             <form onSubmit={handleSubmit(onUpdate)}>
+              <TextField
+                style={{
+                  marginTop: '50px',
+                }}
+                fullWidth
+                name={'image'}
+                error={errors.product}
+                id="filled-basic"
+                label="Url da imagem"
+                variant="filled"
+                defaultValue={product?.urlImage}
+                {...register('image')}
+              />
               <TextField
                 style={{
                   marginTop: '50px',

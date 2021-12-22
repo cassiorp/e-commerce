@@ -64,24 +64,17 @@ export function getAllProductsFromUserService(request) {
 }
 
 export function createProduct(request) {
-  console.log('BODY REQUEST');
-  console.log(request.product, '...................');
   const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user`;
 
   return new Promise((resolve, reject) => {
     try {
-      console.log(request);
       const result = axios.post(
         LOGIN_API_ENDPOINT,
         request.product,
         headerAuthorization,
       );
-      console.log('resultado');
-      console.log(result);
       resolve(result);
     } catch (error) {
-      console.log('ERRO PROSMISSE');
-      console.log(error);
       reject(error);
     }
   });

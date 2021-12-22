@@ -3,15 +3,8 @@ import currency from '../../utils/currency';
 import TextField from '@mui/material/TextField';
 
 const InputCurrency = ({ mask = 'currency', ...props }) => {
-  const [values, setValues] = useState();
-  const handleKeyUp = useCallback(
-    (e) => {
-      currency(e);
-    },
-    [mask],
-  );
-
   const defaultCurrency = (defaultValue) => {
+    if (!defaultValue) return '';
     let value = defaultValue;
     value = value.replace(/\D/g, '');
     value = value.replace(/(\d)(\d{2})$/, '$1,$2');
@@ -20,13 +13,21 @@ const InputCurrency = ({ mask = 'currency', ...props }) => {
     defaultValue = value;
     return defaultValue || '';
   };
+  const [values, setValues] = useState(
+    defaultCurrency(props?.defaultValue?.toString().replace('.', '')),
+  );
+  const handleKeyUp = useCallback(
+    (e) => {
+      currency(e);
+    },
+    [mask],
+  );
 
   useEffect(() => {
     if (!props.defaultValue) return;
-    console.log(props.defaultValue, 'aaaaaaaaaaaaaaaa');
-    setValues(defaultCurrency(props.defaultValue.toString().replace('.', '')));
-  }, [props.defaultValue]);
 
+    setValues();
+  }, [props.defaultValue]);
   return (
     <div className="input-group prefix">
       <TextField
@@ -41,7 +42,7 @@ const InputCurrency = ({ mask = 'currency', ...props }) => {
         variant="filled"
         {...props.register('price', { required: true })}
         onKeyUp={handleKeyUp}
-        value={values}
+        defaultValue={values || ''}
       />
     </div>
   );

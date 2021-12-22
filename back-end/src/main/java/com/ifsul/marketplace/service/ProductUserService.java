@@ -29,6 +29,7 @@ public class ProductUserService {
     public ItemEntity addNewProduct(ItemDTO itemDTO) {
         var user = userService.findById(itemDTO.getIdUser());
         ItemEntity itemEntity = new ItemEntity();
+        itemEntity.setUrlImage(itemDTO.getUrlImage());
         itemEntity.setDescription(itemDTO.getDescription());
         itemEntity.setUserId(user.getId());
         itemEntity.setName(itemDTO.getName());

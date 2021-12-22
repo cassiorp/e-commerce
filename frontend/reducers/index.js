@@ -24,8 +24,6 @@ export const user = (state = initialState, action = null) => {
       error: { message: 'Usuario já cadastrado' },
     };
   } else if (action.type === types.LOGIN_SUCCESS) {
-    console.log('REDUCER');
-    console.log(action.userInfo.data);
     return {
       ...state,
       email: action.userInfo.data.email,

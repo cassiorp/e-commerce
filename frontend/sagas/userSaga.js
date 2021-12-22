@@ -25,8 +25,6 @@ export function* loginSaga(payload) {
     const response = yield call(loginService, payload);
     setOnLocalStorage('token', response?.data?.token);
     const userInfo = yield call(getUserInfo, payload?.user?.email);
-    console.log('USER INFOR');
-    console.log(userInfo);
     const products = yield call(
       getAllProductsFromUserService,
       userInfo?.data?.id,
@@ -43,7 +41,6 @@ export function* loginSaga(payload) {
 export function* getAllProductsSaga() {
   try {
     const products = yield call(getAllProducts);
-    console.log(products, 'pppppppppppppppppp');
     yield put({ type: types.GET_ALL_PRODUCTS_SUCCESS, products });
   } catch (error) {
     console.log(error);
@@ -58,6 +55,5 @@ export function* createProductSaga(payload) {
     yield put({ type: types.CREATE_PRODUCTS_SUCCESS, product });
   } catch (error) {
     console.log('Erro no payload');
-    console.log(error);
   }
 }
