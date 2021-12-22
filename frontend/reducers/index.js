@@ -45,10 +45,9 @@ export const user = (state = initialState, action = null) => {
   } else if (action.type === types.CREATE_PRODUCTS_SUCCESS) {
     return {
       ...state,
-      products: [action.product.data, ...products],
+      productsFromUser: [action.product.data, ...state.productsFromUser],
     };
   } else if (action.type === types.GET_ALL_PRODUCTS_SUCCESS) {
-    console.log(action.products.data, 'uuuuuuuuuuuuuuuuuuuuu');
     return {
       ...state,
       products: action.products.data,

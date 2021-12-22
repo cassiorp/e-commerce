@@ -12,14 +12,12 @@ import {
 } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createProductAction } from '../../sagas/actions/user';
+import InputCurrency from '../InputCurrency';
 
 const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
   const [openSuccess, setOpenSuccess] = useState(false);
   const success = useSelector((state) => state?.success);
   const idUser = useSelector((state) => state?.id);
-
-  const [productToUpdate, setProductToUpdate] = useState(null);
-  
   const dispatch = useDispatch();
 
   const {
@@ -30,11 +28,13 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
   } = useForm();
 
   const onSave = (data) => {
+    const removeAllDots = data.price.replaceAll('.', '');
+    const price = removeAllDots.replace(',', '.');
     const product = {
       name: data.name,
       idUser: idUser,
       description: data.description,
-      price: data.price,
+      price: price,
     };
     dispatch(createProductAction(product));
   };
@@ -106,19 +106,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
               {errors.user && (
                 <ErrorMessage text={'O campo Descrição é obrigatório'} />
               )}
-
-              <TextField
-                style={{
-                  marginTop: '50px',
-                }}
-                fullWidth
-                id="filled-basic"
-                type={'number'}
-                label="Preço"
-                name={'price'}
-                variant="filled"
-                {...register('price', { required: true })}
-              />
+              <InputCurrency register={register} name={'price'} />
 
               {errors.password && (
                 <ErrorMessage text={'O campo Preço é obrigatório'} />
@@ -158,7 +146,6 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
         <ContainerDialog dividers>
           <ContainerRegister>
             <form onSubmit={handleSubmit(onUpdate)}>
-              
               <TextField
                 style={{
                   marginTop: '50px',
@@ -172,7 +159,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
                 defaultValue={product?.name}
                 {...register('name', { required: true })}
               />
-              
+
               {errors.user && (
                 <ErrorMessage text={'O campo produto é obrigatório'} />
               )}
@@ -195,18 +182,10 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
                 <ErrorMessage text={'O campo Descrição é obrigatório'} />
               )}
 
-              <TextField
-                style={{
-                  marginTop: '50px',
-                }}
-                fullWidth
-                id="filled-basic"
-                type={'number'}
-                label="Preço"
+              <InputCurrency
+                register={register}
                 name={'price'}
-                variant="filled"
                 defaultValue={product?.price}
-                {...register('price', { required: true })}
               />
 
               {errors.password && (
@@ -232,7 +211,6 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
       </Dialog>
     );
   };
-
 
   return (
     <>

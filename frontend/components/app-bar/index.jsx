@@ -51,7 +51,6 @@ export default function MenuBar() {
   };
 
   const handleMobileMenuClose = () => {
-    dispatch(logOutAction());
     setMobileMoreAnchorEl(null);
   };
 
@@ -62,6 +61,10 @@ export default function MenuBar() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const logout = () => {
+    dispatch(logOutAction());
   };
 
   const menuId = 'primary-search-account-menu';
@@ -82,7 +85,7 @@ export default function MenuBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={routeToPerfil}>Perfil</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
+      <MenuItem onClick={logout}>Sair</MenuItem>
     </Menu>
   );
 

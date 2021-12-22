@@ -30,6 +30,6 @@ export const getAllProductsAction = () => {
 export const createProductAction = (product) => {
   return {
     type: types.CREATE_PRODUCT,
-    product
+    product,
   };
 };

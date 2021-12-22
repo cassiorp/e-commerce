@@ -21,7 +21,9 @@ const CardComponent = ({ product, onClick }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={onClick} size="small">Editar</Button>
+        <Button onClick={onClick} size="small">
+          Editar
+        </Button>
       </CardActions>
     </Card>
   );

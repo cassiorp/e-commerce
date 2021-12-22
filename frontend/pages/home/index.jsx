@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Template from '../../components/template';
 import Fab from '../../components/fab';
 import Card from '../../components/card/index';
@@ -12,11 +12,16 @@ import DialogPopUp from '../../components/form-product-pop-up';
 const Home = () => {
   const Redirect = redirect('http://localhost:3000/login');
   const login = useSelector((state) => state?.logged);
-  const products = useSelector((state) => state?.productsFromUser);
+  const productsFromUser = useSelector((state) => state?.productsFromUser);
   const [openPopUp, setOpenPopUp] = useState(false);
   const [openPopUpUpdate, setOpenPopUpUpdate] = useState(false);
-  const [openError, setOpenError] = useState(false);
   const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    if (!productsFromUser) return;
+    setProducts(productsFromUser);
+  }, [productsFromUser]);
 
   const closePopUp = () => {
     setOpenPopUp(false);

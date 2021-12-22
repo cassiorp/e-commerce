@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ifsul.marketplace.entity.UserEntity;
 import com.ifsul.marketplace.repository.UserRepository;
-import com.ifsul.marketplace.service.TokenService;
+import com.ifsul.marketplace.security.service.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
