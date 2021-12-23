@@ -60,7 +60,7 @@ const CardComponent = ({ product, onClick, setSuccess }) => {
         <Button
           onClick={() => {
             onClickBuyOrEdit();
-            setSuccess(true);
+            if (setSuccess) setSuccess(true);
           }}
           size="small"
         >
