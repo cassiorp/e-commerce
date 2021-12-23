@@ -1,6 +1,6 @@
-# E-Commerce.
+# Marketplace.
 
-O projeto será desenvolvido um MVP de um e-commerce. Onde usuários poderão se cadastrar, comprar e vender produtos.
+O projeto será desenvolvido um MVP de um marketplace. Onde usuários poderão se cadastrar, comprar e vender produtos.
 
 Funcionalidades:</br>
 - Cadastro e login com conta Google ou formulário.</br>
