@@ -1,7 +1,9 @@
 package com.ifsul.marketplace.api;
 
 import com.ifsul.marketplace.dto.user.request.ItemDTO;
+import com.ifsul.marketplace.dto.user.request.ItemIdDto;
 import com.ifsul.marketplace.entity.ItemEntity;
+import com.ifsul.marketplace.entity.ProductEntity;
 import com.ifsul.marketplace.service.ProductUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,20 @@ public class ProductUserController {
         return new ResponseEntity<>(saved, CREATED);
     }
 
+    @PostMapping(value = "/purchase")
+    public ResponseEntity purchase(@RequestBody ItemIdDto itemIdDto) {
+        var product = productUserService.purchase(itemIdDto);
+        return new ResponseEntity<>(product, CREATED);
+    }
+
     @GetMapping(value = "/{id}")
     public List<ItemEntity> getAllProductsByUserEmail(@PathVariable String id) {
         return productUserService.getAllProductsByUserId(id);
+    }
+
+    @GetMapping(value = "/purchase/{id}")
+    public List<ProductEntity> getAllPurchaseByUserId(@PathVariable String id) {
+        return productUserService.getAllPurchaseByUserId(id);
     }
 
     @GetMapping

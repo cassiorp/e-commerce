@@ -9,6 +9,7 @@ const initialState = {
   success: false,
   productsFromUser: [],
   products: [],
+  purchase: [],
 };
 
 export const user = (state = initialState, action = null) => {
@@ -49,6 +50,17 @@ export const user = (state = initialState, action = null) => {
     return {
       ...state,
       products: action.products.data,
+    };
+  } else if (action.type === types.PURCHASE_SUCCESS) {
+    return {
+      ...state,
+      purchase: [action.product.data],
+    };
+  } else if (action.type === types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS) {
+    console.log(action, 'aaaaaa');
+    return {
+      ...state,
+      purchase: action.purchase.data,
     };
   } else if (action.type === types.LOGOUT) {
     return initialState;

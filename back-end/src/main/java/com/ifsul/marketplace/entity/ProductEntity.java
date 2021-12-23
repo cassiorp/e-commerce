@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "products")
-@Builder
 @Data
 @ToString
 public class ProductEntity {
@@ -15,6 +14,10 @@ public class ProductEntity {
     @Id
     private String id;
     private String userId;
-    private ItemEntity[] products;
+    private ItemEntity product;
+
+    public ProductEntity () {
+
+    }
 
 }

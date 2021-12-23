@@ -33,3 +33,17 @@ export const createProductAction = (product) => {
     product,
   };
 };
+
+export const buyAction = (purchase) => {
+  return {
+    type: types.PURCHASE,
+    purchase,
+  };
+};
+
+export const getAllPurchaseByUserIdAction = (userId) => {
+  return {
+    type: types.GET_ALL_PURCHASE_BY_USER_ID_ACTION,
+    userId,
+  };
+};

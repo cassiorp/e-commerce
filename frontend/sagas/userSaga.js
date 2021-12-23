@@ -7,6 +7,8 @@ import {
   loginService,
   sendService,
   createProduct,
+  buyProduct,
+  getAllPurchaseByUserIdService,
 } from '../services/services';
 import { setOnLocalStorage } from '../utils/localstorage';
 
@@ -55,5 +57,36 @@ export function* createProductSaga(payload) {
     yield put({ type: types.CREATE_PRODUCTS_SUCCESS, product });
   } catch (error) {
     console.log('Erro no payload');
+  }
+}
+
+export function* buySaga(payload) {
+  try {
+    const product = yield call(buyProduct, payload);
+    const userId = payload?.purchase.userId;
+    console.log(product, 'ttttttttttttttttttttttt');
+    yield put({ type: types.PURCHASE_SUCCESS, product });
+
+    const purchase = yield call(getAllPurchaseByUserIdService, userId);
+    console.log(purchase, 'ttttttttttttttttttttttt');
+    yield put({
+      type: types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS,
+      purchase,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* getAllPurchaseByUserIdSaga(payload) {
+  try {
+    const purchase = yield call(getAllPurchaseByUserIdService, payload?.userId);
+    console.log(purchase, 'ttttttttttttttttttttttt');
+    yield put({
+      type: types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS,
+      purchase,
+    });
+  } catch (error) {
+    console.log(error);
   }
 }

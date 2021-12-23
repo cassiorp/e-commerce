@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getFromLocalStorage } from '../utils/localstorage';
+import {getAllPurchaseByUserIdSaga} from "../sagas/userSaga";
 
 const headerAuthorization = {
   headers: { Authorization: `Bearer ${getFromLocalStorage('token')}` },
@@ -63,6 +64,19 @@ export function getAllProductsFromUserService(request) {
   });
 }
 
+export function getAllPurchaseByUserIdService(request) {
+  console.log(request, 'uuuuuuuuuuuuuuuuuuuuuuu')
+  const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user/purchase/${request}`;
+  return new Promise((resolve, reject) => {
+    try {
+      const result = axios.get(LOGIN_API_ENDPOINT, headerAuthorization);
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 export function createProduct(request) {
   const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user`;
 
@@ -71,6 +85,27 @@ export function createProduct(request) {
       const result = axios.post(
         LOGIN_API_ENDPOINT,
         request.product,
+        headerAuthorization,
+      );
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function buyProduct(request) {
+  const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user/purchase`;
+  console.log(request, 'aaaaaaaaaaaaaaa')
+  const purchase = {
+    productId: request.purchase?.productId,
+    userId: request?.purchase?.userId,
+  };
+  return new Promise((resolve, reject) => {
+    try {
+      const result = axios.post(
+        LOGIN_API_ENDPOINT,
+        purchase,
         headerAuthorization,
       );
       resolve(result);

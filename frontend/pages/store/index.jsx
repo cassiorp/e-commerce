@@ -8,14 +8,26 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProductsAction } from '../../sagas/actions/user';
+import {
+  getAllProductsAction,
+  getAllPurchaseByUserIdAction,
+} from '../../sagas/actions/user';
+import DialogPopUp from '../../components/form-product-pop-up';
 
 const Store = () => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.products);
+  const purchase = useSelector((state) => state?.purchase);
+  const userId = useSelector((state) => state?.id);
+  const [openPopUpUpdate, setOpenPopUpUpdate] = useState(false);
+  const [product, setProduct] = useState(null);
+  const closePopUpUpdate = () => {
+    setOpenPopUpUpdate(false);
+  };
   useEffect(() => {
     dispatch(getAllProductsAction());
+    dispatch(getAllPurchaseByUserIdAction(userId));
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -39,12 +51,41 @@ const Store = () => {
           <Container>
             {products?.map((product) => (
               <>
-                <Card product={product} />
+                <Card
+                  onClick={() => {
+                    setOpenPopUpUpdate(true);
+                    setProduct(product);
+                  }}
+                  product={product}
+                />
+              </>
+            ))}
+          </Container>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Container>
+            {purchase.map((prod) => (
+              <>
+                <Card
+                  onClick={() => {
+                    setOpenPopUpUpdate(true);
+                  }}
+                  product={prod?.product}
+                />
               </>
             ))}
           </Container>
         </TabPanel>
       </Box>
+      {openPopUpUpdate && (
+        <DialogPopUp
+          title={`Editar produto`}
+          openPopup={openPopUpUpdate}
+          onClose={closePopUpUpdate}
+          type={'update'}
+          product={product}
+        />
+      )}
     </Template>
   );
 };
