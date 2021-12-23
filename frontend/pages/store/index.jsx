@@ -64,7 +64,7 @@ const Store = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Container>
-            {purchase.map((prod) => (
+            {purchase?.map((prod) => (
               <>
                 <Card
                   onClick={() => {

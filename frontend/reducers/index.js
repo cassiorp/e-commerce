@@ -46,6 +46,12 @@ export const user = (state = initialState, action = null) => {
       ...state,
       productsFromUser: [action.product.data, ...state.productsFromUser],
     };
+  } else if (action.type === types.UPDATE_PRODUCT_SUCCESS) {
+    console.log(types.UPDATE_PRODUCT_SUCCESS)
+    return {
+      ...state,
+      productsFromUser: [action.product.data, ...state.productsFromUser],
+    };
   } else if (action.type === types.GET_ALL_PRODUCTS_SUCCESS) {
     return {
       ...state,

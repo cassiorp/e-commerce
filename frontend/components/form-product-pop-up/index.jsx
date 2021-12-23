@@ -11,7 +11,7 @@ import {
   ButtonContainer,
 } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProductAction } from '../../sagas/actions/user';
+import { createProductAction, updateProductAction } from '../../sagas/actions/user';
 import InputCurrency from '../InputCurrency';
 
 const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
@@ -28,27 +28,32 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
     formState: { errors },
   } = useForm();
 
+
   const onSave = (data) => {
     const removeAllDots = data.price.replaceAll('.', '');
     const price = removeAllDots.replace(',', '.');
-    const product = {
+    const productCreate = {
       name: data.name,
       idUser: idUser,
       description: data.description,
       price: price,
       urlImage: data.image || productWithOutImage,
     };
-    dispatch(createProductAction(product));
+    dispatch(createProductAction(productCreate));
   };
 
   const onUpdate = (data) => {
-    const product = {
+    const removeAllDots = data.price.replaceAll('.', '');
+    const price = removeAllDots.replace(',', '.');
+    const productUpdate = {
+      productId: product.id,
+      idUser: idUser,
       name: data.name,
       description: data.description,
-      price: data.price,
+      price: price,
       urlImage: data.image || productWithOutImage,
     };
-    console.log(product);
+    dispatch(updateProductAction(productUpdate));
   };
 
   const resetValuesAndClose = () => {

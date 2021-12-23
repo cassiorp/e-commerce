@@ -34,6 +34,15 @@ export const createProductAction = (product) => {
   };
 };
 
+export const updateProductAction = (product) => {
+  console.log("chamando update action")
+  return {
+    type: types.UPDATE_PRODUCT,
+    product,
+  };
+};
+
+
 export const buyAction = (purchase) => {
   return {
     type: types.PURCHASE,

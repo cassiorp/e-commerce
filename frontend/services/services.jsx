@@ -94,6 +94,36 @@ export function createProduct(request) {
   });
 }
 
+export function updateProduct(request) {
+  console.log("REQUEST")
+  console.log(request.product.productId)
+  const productId = request.product.productId;
+  
+  const ENDPOINT = `http://localhost:8080/v1/products/user/${productId}`;
+
+  const product = {
+    name: request.product?.name,
+    idUser: request.product?.idUser,
+    description: request.product?.description,
+    price: request.product?.price,
+    urlImage: request.product?.urlImage
+  }
+
+  return new Promise((resolve, reject) => {
+    try {
+      const result = axios.put(
+        ENDPOINT,
+        product,
+        headerAuthorization,
+      );
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+
 export function buyProduct(request) {
   const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/products/user/purchase`;
   console.log(request, 'aaaaaaaaaaaaaaa')
