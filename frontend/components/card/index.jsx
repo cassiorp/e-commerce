@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { buyAction } from '../../sagas/actions/user';
 
 const CardComponent = ({ product, onClick }) => {
-
   const user = useSelector((state) => state?.id);
   const dispatch = useDispatch();
 
@@ -22,7 +21,7 @@ const CardComponent = ({ product, onClick }) => {
     };
     return dispatch(buyAction(purchase));
   };
-  
+
   const cardStyle = {
     width: 300,
     height: 320,
