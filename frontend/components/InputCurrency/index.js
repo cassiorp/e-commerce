@@ -25,7 +25,6 @@ const InputCurrency = ({ mask = 'currency', ...props }) => {
 
   useEffect(() => {
     if (!props.defaultValue) return;
-
     setValues();
   }, [props.defaultValue]);
   return (
