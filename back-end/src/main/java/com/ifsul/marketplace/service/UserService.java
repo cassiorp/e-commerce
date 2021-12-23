@@ -6,7 +6,7 @@ import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
 import com.ifsul.marketplace.entity.UserEntity;
 import com.ifsul.marketplace.exception.UserAlreadyExistsException;
 import com.ifsul.marketplace.exception.UserDeleteException;
-import com.ifsul.marketplace.exception.UserNotFoundException;
+import com.ifsul.marketplace.exception.NotFoundException;
 import com.ifsul.marketplace.exception.UserSaveException;
 import com.ifsul.marketplace.mapper.UserMapper;
 import com.ifsul.marketplace.repository.UserRepository;
@@ -68,7 +68,7 @@ public class UserService {
 
     public UserEntity findById(String id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Não encontrado: " + id));
+                .orElseThrow(() -> new NotFoundException("Não encontrado: " + id));
     }
 
     private void delete(UserEntity userEntity) {

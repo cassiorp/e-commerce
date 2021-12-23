@@ -3,6 +3,7 @@ package com.ifsul.marketplace.service;
 import com.ifsul.marketplace.dto.user.request.ItemDTO;
 import com.ifsul.marketplace.dto.user.response.UserResponseDTO;
 import com.ifsul.marketplace.entity.ItemEntity;
+import com.ifsul.marketplace.exception.NotFoundException;
 import com.ifsul.marketplace.exception.UserSaveException;
 import com.ifsul.marketplace.mapper.UserMapper;
 import com.ifsul.marketplace.repository.ItemRepository;
@@ -28,6 +29,7 @@ public class ProductUserService {
 
     public ItemEntity addNewProduct(ItemDTO itemDTO) {
         var user = userService.findById(itemDTO.getIdUser());
+        System.out.println(itemDTO);
         ItemEntity itemEntity = new ItemEntity();
         itemEntity.setUrlImage(itemDTO.getUrlImage());
         itemEntity.setDescription(itemDTO.getDescription());
@@ -56,5 +58,14 @@ public class ProductUserService {
         return itemRepository.findAll();
     }
 
-
+    public ItemEntity updateProduct(ItemDTO itemDTO, String id) {
+        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(() -> new NotFoundException("produto não encontrado"));
+        itemEntity.setUrlImage(itemDTO.getUrlImage());
+        itemEntity.setDescription(itemDTO.getDescription());
+        itemEntity.setUserId(itemDTO.getIdUser());
+        itemEntity.setName(itemDTO.getName());
+        itemEntity.setPrice(itemDTO.getPrice());
+        this.save(itemEntity);
+        return itemEntity;
+    }
 }

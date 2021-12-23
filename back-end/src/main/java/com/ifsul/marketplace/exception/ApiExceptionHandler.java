@@ -30,8 +30,8 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(apiExceptionSchema, e.getStatus());
     }
 
-    @ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<Object> handleBadRequestException(UserNotFoundException e) {
+    @ExceptionHandler(value = {NotFoundException.class})
+    public ResponseEntity<Object> handleBadRequestException(NotFoundException e) {
         ApiExceptionSchema apiExceptionSchema = new ApiExceptionSchema(
                 e.getMessage(),
                 e.getStatus(),
