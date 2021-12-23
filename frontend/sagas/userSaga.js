@@ -9,7 +9,8 @@ import {
   createProduct,
   buyProduct,
   getAllPurchaseByUserIdService,
-  updateProduct
+  updateProduct,
+  updateUser,
 } from '../services/services';
 import { setOnLocalStorage } from '../utils/localstorage';
 
@@ -20,6 +21,16 @@ export function* sendForm(payload) {
   } catch (error) {
     const errorData = error?.response?.data;
     yield put({ type: types.CREATE_USER_FAIL, errorData });
+  }
+}
+
+export function* updateUserSaga(payload) {
+  try {
+    const user = yield call(updateUser, payload);
+    yield put({ type: types.UPDATE_PRODUCT_SUCCESS, payload });
+  } catch (error) {
+    const errorData = error?.response?.data;
+    // yield put({ type: types.CREATE_USER_FAIL, errorData });
   }
 }
 
@@ -62,17 +73,16 @@ export function* createProductSaga(payload) {
 }
 
 export function* updateProductSaga(payload) {
-  
   try {
     const product = yield call(updateProduct, payload);
-    console.log(product)
+    console.log(product);
     const products = yield call(getAllProducts);
     yield put({ type: types.GET_ALL_PRODUCTS_SUCCESS, products });
     yield put({ type: types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS, products });
     // console.log(product)
     // yield put({ type: types.UPDATE_PRODUCT_SUCCESS, product });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     console.log('Erro no payload');
   }
 }

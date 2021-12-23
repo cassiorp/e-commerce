@@ -33,6 +33,7 @@ public class ProductUserController {
     public ResponseEntity purchase(@RequestBody ItemIdDto itemIdDto) {
         var product = productUserService.purchase(itemIdDto);
         return new ResponseEntity<>(product, CREATED);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity updateProduct(@Valid @RequestBody ItemDTO itemDTO, @PathVariable String id) {

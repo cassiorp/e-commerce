@@ -24,11 +24,17 @@ export const user = (state = initialState, action = null) => {
     return {
       error: { message: 'Usuario já cadastrado' },
     };
+  } else if (action.type === types.CREATE_PRODUCTS_SUCCESS) {
+    return {
+      name: action.user.name,
+      email: action.user.email,
+    };
   } else if (action.type === types.LOGIN_SUCCESS) {
     return {
       ...state,
       email: action.userInfo.data.email,
       id: action.userInfo.data.id,
+      name: action.userInfo.data.name,
       logged: true,
     };
   } else if (action.type === types.LOGIN_ERROR) {
@@ -47,7 +53,7 @@ export const user = (state = initialState, action = null) => {
       productsFromUser: [action.product.data, ...state.productsFromUser],
     };
   } else if (action.type === types.UPDATE_PRODUCT_SUCCESS) {
-    console.log(types.UPDATE_PRODUCT_SUCCESS)
+    console.log(types.UPDATE_PRODUCT_SUCCESS);
     return {
       ...state,
       productsFromUser: [action.product.data, ...state.productsFromUser],

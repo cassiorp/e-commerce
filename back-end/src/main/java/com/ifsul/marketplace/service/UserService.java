@@ -47,6 +47,7 @@ public class UserService {
         UserEntity toCheck = this.findById(id);
         checkExistsEmailToUpdate(userUpdateDTO, toCheck);
         UserEntity toUpdate = UserMapper.toEntity(userUpdateDTO, toCheck);
+        toUpdate.setPassword(new BCryptPasswordEncoder().encode(toUpdate.getPassword()));
         toUpdate = this.save(toUpdate);
         return UserMapper.toResponse(toUpdate);
     }

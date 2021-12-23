@@ -24,6 +24,33 @@ export function sendService(request) {
   });
 }
 
+export function updateUser(request) {
+  console.log("REQUEST");
+  console.log(request);
+  const userId = request.user.id;
+  
+  const ENDPOINT = `http://localhost:8080/v1/users/${userId}`;
+
+  const userUpdate = {
+    name: request.user?.name,
+    email: request.user?.email,
+    password: request.user?.password
+  }
+
+  return new Promise((resolve, reject) => {
+    try {
+      const result = axios.put(
+        ENDPOINT,
+        userUpdate,
+        headerAuthorization,
+      );
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 export function loginService(request) {
   const LOGIN_API_ENDPOINT = `http://localhost:8080/v1/login`;
   const body = {

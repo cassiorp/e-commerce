@@ -7,7 +7,8 @@ import {
   createProductSaga,
   buySaga,
   getAllPurchaseByUserIdSaga,
-  updateProductSaga
+  updateProductSaga,
+  updateUserSaga
 } from './userSaga';
 
 export default function* watchForm() {
@@ -16,6 +17,7 @@ export default function* watchForm() {
   yield takeLatest(types.GET_ALL_PRODUCTS, getAllProductsSaga);
   yield takeLatest(types.CREATE_PRODUCT, createProductSaga);
   yield takeLatest(types.UPDATE_PRODUCT, updateProductSaga);
+  yield takeLatest(types.UPDATE_USER, updateUserSaga);
   yield takeLatest(types.PURCHASE, buySaga);
   yield takeLatest(
     types.GET_ALL_PURCHASE_BY_USER_ID_ACTION,

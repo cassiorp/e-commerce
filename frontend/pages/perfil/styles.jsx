@@ -4,10 +4,11 @@ import { Button } from '@mui/material';
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100%;
+  height: 100%; 
+  margin-top: 100px;
 `;
 
 export const Form = styled(Paper)`

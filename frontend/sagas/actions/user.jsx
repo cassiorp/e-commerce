@@ -8,6 +8,14 @@ export const createUserAction = (user) => {
   };
 };
 
+export const updateUserAction = (user) => {
+  return {
+    type: types.UPDATE_USER,
+    user,
+  };
+};
+
+
 export const loginAction = (user) => {
   return {
     type: types.LOGIN_USER,
