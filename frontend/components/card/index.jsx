@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { buyAction } from '../../sagas/actions/user';
 
-const CardComponent = ({ product, onClick }) => {
+const CardComponent = ({ product, onClick, setSuccess }) => {
   const user = useSelector((state) => state?.id);
   const dispatch = useDispatch();
 
@@ -57,7 +57,13 @@ const CardComponent = ({ product, onClick }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={onClickBuyOrEdit} size="small">
+        <Button
+          onClick={() => {
+            onClickBuyOrEdit();
+            setSuccess(true);
+          }}
+          size="small"
+        >
           {user === product?.userId ? 'Editar' : 'Comprar'}
         </Button>
       </CardActions>

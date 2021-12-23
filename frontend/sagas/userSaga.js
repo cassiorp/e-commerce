@@ -27,7 +27,7 @@ export function* sendForm(payload) {
 export function* updateUserSaga(payload) {
   try {
     const user = yield call(updateUser, payload);
-    yield put({ type: types.UPDATE_PRODUCT_SUCCESS, payload });
+    yield put({ type: types.UPDATE_USER_SUCCESS, payload });
   } catch (error) {
     const errorData = error?.response?.data;
     // yield put({ type: types.CREATE_USER_FAIL, errorData });
@@ -43,7 +43,6 @@ export function* loginSaga(payload) {
       getAllProductsFromUserService,
       userInfo?.data?.id,
     );
-    console.log(products);
     yield put({ type: types.LOGIN_SUCCESS, userInfo });
     yield put({ type: types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS, products });
   } catch (error) {
@@ -62,12 +61,11 @@ export function* getAllProductsSaga() {
 }
 
 export function* createProductSaga(payload) {
-  console.log('PAYLOAD');
-  console.log(payload);
   try {
     const product = yield call(createProduct, payload);
     yield put({ type: types.CREATE_PRODUCTS_SUCCESS, product });
   } catch (error) {
+    console.log(error);
     console.log('Erro no payload');
   }
 }
@@ -75,12 +73,10 @@ export function* createProductSaga(payload) {
 export function* updateProductSaga(payload) {
   try {
     const product = yield call(updateProduct, payload);
-    console.log(product);
     const products = yield call(getAllProducts);
     yield put({ type: types.GET_ALL_PRODUCTS_SUCCESS, products });
     yield put({ type: types.GET_ALL_PRODUCTS_BY_USER_EMAIL_SUCCESS, products });
-    // console.log(product)
-    // yield put({ type: types.UPDATE_PRODUCT_SUCCESS, product });
+    yield put({ type: types.UPDATE_PRODUCT_SUCCESS, product });
   } catch (error) {
     console.log(error);
     console.log('Erro no payload');
@@ -91,11 +87,8 @@ export function* buySaga(payload) {
   try {
     const product = yield call(buyProduct, payload);
     const userId = payload?.purchase.userId;
-    console.log(product, 'ttttttttttttttttttttttt');
     yield put({ type: types.PURCHASE_SUCCESS, product });
-
     const purchase = yield call(getAllPurchaseByUserIdService, userId);
-    console.log(purchase, 'ttttttttttttttttttttttt');
     yield put({
       type: types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS,
       purchase,
@@ -108,7 +101,6 @@ export function* buySaga(payload) {
 export function* getAllPurchaseByUserIdSaga(payload) {
   try {
     const purchase = yield call(getAllPurchaseByUserIdService, payload?.userId);
-    console.log(purchase, 'ttttttttttttttttttttttt');
     yield put({
       type: types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS,
       purchase,

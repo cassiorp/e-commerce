@@ -16,7 +16,7 @@ import InputCurrency from '../InputCurrency';
 
 const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
   const [openSuccess, setOpenSuccess] = useState(false);
-  const success = useSelector((state) => state?.success);
+  const success = useSelector((state) => state?.productSuccess);
   const idUser = useSelector((state) => state?.id);
   const dispatch = useDispatch();
   const productWithOutImage =
@@ -40,6 +40,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
       urlImage: data.image || productWithOutImage,
     };
     dispatch(createProductAction(productCreate));
+    if(success) setOpenSuccess(true);
   };
 
   const onUpdate = (data) => {
@@ -54,6 +55,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
       urlImage: data.image || productWithOutImage,
     };
     dispatch(updateProductAction(productUpdate));
+    if(success) setOpenSuccess(true);
   };
 
   const resetValuesAndClose = () => {
@@ -64,10 +66,6 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
     onClose();
   };
 
-  useEffect(() => {
-    if (!success) return;
-    setOpenSuccess(true);
-  }, [success]);
 
   const renderCreateForm = () => {
     return (
@@ -262,6 +260,7 @@ const DialogPopUp = ({ title, openPopup, onClose, type, product }) => {
           Produto salvo com sucesso
         </Alert>
       </Snackbar>
+      
       {type == 'create' ? renderCreateForm() : renderUpdateForm()}
     </>
   );

@@ -13,15 +13,18 @@ import {
   getAllPurchaseByUserIdAction,
 } from '../../sagas/actions/user';
 import DialogPopUp from '../../components/form-product-pop-up';
+import { Alert, Snackbar } from '@mui/material';
 
 const Store = () => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.products);
   const purchase = useSelector((state) => state?.purchase);
+  const buySuccess = useSelector((state) => state?.buySuccess);
   const userId = useSelector((state) => state?.id);
   const [openPopUpUpdate, setOpenPopUpUpdate] = useState(false);
   const [product, setProduct] = useState(null);
+  const [success, setSuccess] = useState(false);
   const closePopUpUpdate = () => {
     setOpenPopUpUpdate(false);
   };
@@ -36,6 +39,21 @@ const Store = () => {
 
   return (
     <Template>
+      <Snackbar
+        open={success}
+        autoHideDuration={3000}
+        onClose={() => setSuccess(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={() => setSuccess(false)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
+          Produto comprado.
+        </Alert>
+      </Snackbar>
+
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
@@ -57,6 +75,7 @@ const Store = () => {
                     setProduct(product);
                   }}
                   product={product}
+                  setSuccess={setSuccess}
                 />
               </>
             ))}

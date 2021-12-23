@@ -7,9 +7,11 @@ const initialState = {
   error: undefined,
   logged: false,
   success: false,
+  productSuccess: false,
   productsFromUser: [],
   products: [],
   purchase: [],
+  buySuccess: false
 };
 
 export const user = (state = initialState, action = null) => {
@@ -24,7 +26,7 @@ export const user = (state = initialState, action = null) => {
     return {
       error: { message: 'Usuario já cadastrado' },
     };
-  } else if (action.type === types.CREATE_PRODUCTS_SUCCESS) {
+  } else if (action.type === types.UPDATE_USER_SUCCESS) {
     return {
       name: action.user.name,
       email: action.user.email,
@@ -50,13 +52,14 @@ export const user = (state = initialState, action = null) => {
   } else if (action.type === types.CREATE_PRODUCTS_SUCCESS) {
     return {
       ...state,
+      productSuccess: true,
       productsFromUser: [action.product.data, ...state.productsFromUser],
     };
   } else if (action.type === types.UPDATE_PRODUCT_SUCCESS) {
-    console.log(types.UPDATE_PRODUCT_SUCCESS);
     return {
       ...state,
-      productsFromUser: [action.product.data, ...state.productsFromUser],
+      productSuccess: true,
+      //productsFromUser: [action.product.data, ...state.productsFromUser],
     };
   } else if (action.type === types.GET_ALL_PRODUCTS_SUCCESS) {
     return {
@@ -67,9 +70,9 @@ export const user = (state = initialState, action = null) => {
     return {
       ...state,
       purchase: [action.product.data],
+      buySuccess: true
     };
   } else if (action.type === types.GET_ALL_PURCHASE_BY_USER_ID_ACTION_SUCCESS) {
-    console.log(action, 'aaaaaa');
     return {
       ...state,
       purchase: action.purchase.data,
