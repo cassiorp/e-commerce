@@ -20,7 +20,6 @@ const Store = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state?.products);
   const purchase = useSelector((state) => state?.purchase);
-  const buySuccess = useSelector((state) => state?.buySuccess);
   const userId = useSelector((state) => state?.id);
   const [openPopUpUpdate, setOpenPopUpUpdate] = useState(false);
   const [product, setProduct] = useState(null);
